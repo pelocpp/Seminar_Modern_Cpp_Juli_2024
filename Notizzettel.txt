@@ -1,0 +1,232 @@
+=====================================
+
+Guten Morgen
+
+C++ für Fortgeschrittene
+
+Peter Loos
+
+30+ :  C/C++ Java C#  Mobile Progr. 
+
+       Python 
+
+       Back to the Roots: C/C++
+
+2 Tools:
+
+a) Visual Studio // Wandbox
+
+b) Github.com
+
+https://github.com/pelocpp
+
+=====================================
+
+Was ist meine Agenda ???
+
+Fragen
+------
+
+== Was sind meine Erwartungen
+== Muss nächste Woche in Modern C++ programmieren
+== Will einen Überblick bekommen
+== Will Modern C++ Quellcode lesen/verstehen können
+== Welche Sprachen kenne ich noch .......
+== Was MUSS drin sein !!!
+
+-- Hints ....
+-- Roter Faden 
+-- Safe Programming / Performant
+-- Welche Methodik? / welche Vorgehensweise
+-- Neue Features
+-- Hinweise für Embedded
+-- Smart Pointer / Variadic Templ. / Multi-Threading
+-- "Flickenteppich" aufräumen
+
+-- Objekt-Orientierung
+
+========================================================
+
+ca. 10.30
+
+Mittagspause: ca. ab 12.30
+
+ca. 15 Uhr
+
+Bis 17 Uhr
+
+========================================================
+
+Merkmal: Referenz  ===>  Aliasname // 
+                         Objekt mit NAME
+
+                         LValue : Left Value 
+
+                         Left: Name links in einer Zuweisung
+
+                         n = 123;
+
+                         Temp. Objekt: Keinen Namen
+
+Ab C++ 11:
+
+Neues Konzept:  Performanz
+
+Um unnötige Kopien zu vermeiden
+
+A) Wie lassen sich temp. Objekte als Parameter übergeben?
+
+   Mit einer neuen Variante einer Referenz: RValue-Referenz
+
+   R = Right : "Rechts in einer Zuweisung".
+
+
+B) Überladung:  sayHello
+
+   ========>  Weiche 
+
+
+
+Frage: Kann ich message noch verwenden ??
+
+       Moveable State
+
+====================================================
+
+Move-Semantik:
+--------------
+
+void function(Type param)    // Call by Kopie
+
+versus
+
+void function(const Type& param)    // Call by Referenz
+
+Antwort:  Wenn Type = Elementar: Go for Copy
+
+Antwort:  Wenn Type = Nicht Elementar: Go for Referenz
+
+Eine const Referenz ist SAFE
+
+
+Antwort: Go always for "const Type& param"
+
+// Ist Type elementar oder eine Klasse (Objekt)
+
+        // Kopie
+        int m = message;
+00007FF6399C433F  mov         eax,dword ptr [message]  
+00007FF6399C4345  mov         dword ptr [m],eax  
+
+        // Referenz
+        int m = message;
+00007FF6ED204340  mov         rax,qword ptr [message]  
+00007FF6ED204347  mov         eax,dword ptr [rax]  
+00007FF6ED204349  mov         dword ptr [m],eax  
+
+=======================================================
+
+Macht das einen Unterschied ?
+
+1) void function(Type& param)
+
+versus
+
+2) void function(const Type& param)
+
+A) 2) ist safer ...
+
+B) 2) kann schneller sein 
+
+  Was haben Funktionen des "Functional Programming"
+  NICHT:  Zugriff auf STATE
+
+  'const' ist eine Option für den Code-Generator:
+
+  Besser zu optimieren.
+
+==================================================
+
+Einschub:
+
+BigData data2 = data;
+
+Syntax: Zum Erzeugen einer Kopie
+
+2 Schreibweisen:
+
+i)  BigData data2 = data;
+ii) BigData data2 (data);
+
+// PYTHON , Java, C#:
+
+VORSICHT: In diesen Sprachen sind data, data2 REFERENZEN
+
+In C++ sind das KEINE REFERENZEN,
+  sondern OBJEKTE (Value)
+
+Es wird KEINE Referenz kopiert
+Es wird EIN OBJEKT kopiert.
+// es wird ein Speicherbereich kopiert.
+
+
+Kopier-Konstuktor
+
+A) Gibt es aumatisch : Es wird einfach
+
+        alles Byte für Byte kopiert.
+
+        "Flache" / "Shallow" Copy
+
+        Ginge soweit
+
+        Ausnahme / Problem: Was ist, wenn Pointer dabei sind ????
+
+        Doppelte Zeiger: NEIN.
+
+        Dann müssen wir den Kopier-Konstruktor
+        selber implementieren.
+
+
+Wozu ?????????????????????????????
+
+// Java, C#:  ICloneable ....
+
+==================================================
+
+Ab C++ 11:
+
+Verschiebe Semantik:
+--------------------
+
+---: ... F0   // Temp Objekt am Stack // wird freigegegen
+---: ... D0   // Kopie für den Vektor
+
+
+---: ... F0   // Temp Objekt am Stack // wird freigegegen
+
+Nebenbemerkung:
+
+noexcept
+
+==>  Exception Handling // throw / catch
+
+==>  Exception Handling:
+
+     Call-Stack wird komplexer, da Ausnahmen 
+     von einer Methode nach außen kopiert werden.
+
+     noexcept: Es wird KEIN Code für das Transportieren einer Ausnahmen erzeugt.
+
+Wenn doch eine Ausnahme eintritt: Absturz
+
+Wann kann man noexcept OHNE Risiko einsetzen:
+
+== Wenn die Funktion nur aus WERTZUWEISUNGEN besteht.
+
+noexcept  ===>  
+
+Ausnahmesicherheit / Exception Safety
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/ExceptionSafety/ExceptionSafety.md
+
