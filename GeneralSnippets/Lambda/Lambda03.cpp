@@ -28,7 +28,7 @@ namespace LambdaAndThisClosure {
 
         void doSomething() {
 
-            auto lambda = [this]() mutable {  // use [*this] to work on a copy
+            auto lambda = [this] () mutable {  // use [*this] to work on a copy
                 incValue();
                 return m_value;
             };

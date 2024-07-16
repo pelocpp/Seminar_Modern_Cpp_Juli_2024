@@ -6,9 +6,15 @@ module modern_cpp:lambda;
 
 namespace Lambdas {
 
+    // C
     static bool compare (int n1, int n2) {
-        return n1 < n2;
+
+        std::cout << " vergleiche " << n1 << " mit " << n2 << std::endl;
+
+        return n1 > n2;
     }
+
+
 
     class Comparer
     {
@@ -17,22 +23,27 @@ namespace Lambdas {
 
     public:
         Comparer() : m_flag{ true } {}
+
         Comparer(bool flag) : m_flag{ flag } {}
 
         bool operator() (int n1, int n2) const {
+            std::cout << " operator() " << n1 << " mit " << n2 << std::endl;
             return (m_flag) ? n1 < n2 : n1 > n2;
         }
     };
 
     static void test_00()
     {
-        Comparer obj{ false };
-        bool result = obj(1, 2);
+        Comparer obj( true );
+
+        bool result = obj (1, 2);
+
         std::cout << std::boolalpha << result << std::endl;
     }
 
     static void test_01()
     {
+ 
         // local class within function possible
         class LocalComparer
         {
@@ -44,6 +55,7 @@ namespace Lambdas {
             LocalComparer(bool flag) : m_flag{ flag } {}
 
             bool operator() (int n1, int n2) const {
+                std::cout << " local operator() " << n1 << " mit " << n2 << std::endl;
                 return (m_flag) ? n1 < n2 : n1 > n2;
             }
         };
@@ -55,13 +67,40 @@ namespace Lambdas {
         }
         std::cout << std::endl;
 
-        std::sort(std::begin(vec), std::end(vec), compare);
+        std::sort(
+            std::begin(vec),
+            std::end(vec), 
+            compare
+        );
+        
         // or
-        std::sort(std::begin(vec), std::end(vec), Comparer{});
+        std::sort(
+            std::begin(vec),
+            std::end(vec),
+            Comparer(false)
+        );
+        
         // or
-        std::sort(std::begin(vec), std::end(vec), Comparer{false});
+        std::sort(
+            std::begin(vec),
+            std::end(vec),
+            LocalComparer()
+        );
+
+      //  bool m_flag = false;  // JavaScript:  Closure // enclosing scope
+
         // or
-        std::sort(std::begin(vec), std::end(vec), LocalComparer{});
+        std::sort(
+            std::begin(vec),
+            std::end(vec),
+            [flag = true] (int n1, int n2) /*const*/ {
+                std::cout << " Lambda () " << n1 << " mit " << n2 << std::endl;
+                return (flag) ? n1 < n2 : n1 > n2;
+                //return n1 < n2;
+            }
+        );
+
+        // flag = false;
 
         for (int n : vec) {
             std::cout << n << ' ';
@@ -125,8 +164,21 @@ namespace Lambdas {
         // in the lambda-capture without specifying its type:
 
         // lambda with variable definition
-        auto lambda = [variable = 10] () { return variable; };
+        auto lambda = [variable = 10] () mutable -> int {
+
+            variable++;
+            return variable;
+        };
+        
         std::cout << lambda() << std::endl;
+        std::cout << lambda() << std::endl;
+        std::cout << lambda() << std::endl;
+
+        return;
+
+
+
+
 
         // Captures default to 'const value':
         // The mutable keyword removes the 'const' qualification from all captured variables
@@ -146,7 +198,11 @@ namespace Lambdas {
         int n = 1;
         int m = 2;
 
-        auto l1 = [=] {
+        std::function< void(int,int) > l0 = [&](int x, int y) {
+            std::cout << "Copy:      " << n << " " << m << std::endl;
+        };
+
+        std::function< void(int, int) > l1 = [=] (int x, int y) {
             std::cout << "Copy:      " << n << " " << m << std::endl;
         };
 
@@ -165,7 +221,7 @@ namespace Lambdas {
         n = 3;
         m = 4;
 
-        l1();
+        l1(12, 13);
         l2();
         l3();
         l4();
@@ -188,17 +244,21 @@ namespace Lambdas {
         int n = 1;
         int m = 2;
 
+        int* ip = nullptr;
+        int& rn = n;
+
         auto lambda = [&] {
             std::cout << "Reference: " << n << " " << m << std::endl;
         };
 
-        return lambda;  // I would't do this never ever :-)
+        return lambda; // I would't do this never ever :-)
     }
 
     static void test_07() {
 
         auto outerLambda1 = test_07_helper_a();
         auto outerLambda2 = test_07_helper_b();
+
         outerLambda1();
         outerLambda2();
     }
@@ -234,16 +294,16 @@ namespace Lambdas {
 void main_lambdas()
 {
     using namespace Lambdas;
-    test_00();
-    test_01();
-    test_02();
-    test_03();
-    test_04();
-    test_05();
-    test_06();
+    //test_00();
+    //test_01();
+    //test_02();
+    //test_03();
+    //test_04();
+    //test_05();
+    //test_06();
     test_07();
-    test_08();
-    test_09();
+    //test_08();
+    //test_09();
 }
 
 // =====================================================================================

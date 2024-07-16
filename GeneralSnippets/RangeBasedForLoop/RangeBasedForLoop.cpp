@@ -10,6 +10,8 @@ module modern_cpp:range_based_for_loop;
 
 namespace RangeBasedForLoop {
 
+    std::map<int, int> aMap;
+
     // global function
     static void processElement(int n)
     {
@@ -25,6 +27,149 @@ namespace RangeBasedForLoop {
         }
     };
 
+    static void printMe(int value)
+    {
+        std::cout << value << std::endl;
+    }
+
+    static void test_00()
+    {
+        std::vector<int> vec{ 1, 2, 3 };
+
+        std::vector<int>::iterator aPosition;
+
+        std::vector<int>::value_type aValue;
+
+
+
+        std::map<int, int> aMap;
+        aMap[1] = 10;
+        aMap[2] = 20;
+        aMap[3] = 30;
+
+        std::map<int, int>::iterator posInMap;
+
+        // Iterator: Position
+        // valueOf => *
+        // next    => ++
+        // compare => ==, !=
+
+        // std::vector<int>::iterator pos;
+
+        // Container: begin, end
+        //std::vector<int>::iterator pos = vec.begin();
+        //std::vector<int>::iterator posEnd = vec.end();
+
+        //while (pos != posEnd) {
+        //    
+        //    int value = *pos;
+        //    std::cout << value << std::endl;
+        //    ++pos;
+        //}
+
+        auto pos = vec.begin();
+        auto posEnd = vec.end();
+
+        while (pos != posEnd) {
+
+            int value = *pos;
+            std::cout << value << std::endl;
+            ++pos;
+        }
+
+        // C++ Algorithmus
+        // classic
+        std::for_each(
+            vec.begin(),
+            vec.end(),
+            printMe
+        );
+
+        // modern
+        std::for_each(
+            vec.begin(),
+            vec.end(),
+            [] (int n) {std::cout << n << " "; }
+        );
+
+        // very modern
+        for( auto n :  vec ) {
+            std::cout << n << " ";
+        }
+
+        // ==========================================
+
+        // modern
+        std::for_each(
+            aMap.begin(),
+            aMap.end(),
+            []( const auto& n ) {std::cout << n.first << " -  " << n.second << std::endl; }
+        );
+
+        // very modern
+        for (const auto& n : aMap) {
+            std::cout << n.first << " -  " << n.second << std::endl;
+        }
+    }
+
+
+    static void test_00_01()
+    {
+        std::vector<int> vec{ 1, 2, 3 };
+
+        std::map<int, int> aMap;
+
+        std::map<int, int>::iterator posInMap;
+
+        // Iterator: Position
+        // valueOf => *
+        // next    => ++
+        // compare => ==, !=
+
+        // std::vector<int>::iterator pos;
+
+        // Container: begin, end
+        std::vector<int>::iterator pos = vec.begin();
+        if (pos == vec.end()) {
+            return;
+        }
+
+        int value = *pos;
+
+        std::cout << value << std::endl;
+
+        pos++;
+        if (pos == vec.end()) {
+            return;
+        }
+
+        value = *pos;
+
+        std::cout << value << std::endl;
+
+        pos++;
+        if (pos == vec.end()) {
+            return;
+        }
+
+        value = *pos;
+
+        std::cout << value << std::endl;
+
+        pos++;
+        if (pos == vec.end()) {
+            return;
+        }
+
+        value = *pos;
+
+        std::cout << value << std::endl;
+    }
+
+
+
+
+
     static void test_01()
     {
         // container of integral data type
@@ -34,7 +179,10 @@ namespace RangeBasedForLoop {
         // "Classic style" examples
 
         // a) Very, very classic style ... C-stylistic
+        // Im Sinne von C++: Stilistisch schlecht
         for (size_t i = 0; i != vec.size(); ++i) {
+            // Index-Operator
+            // Random-Access
             std::cout << vec[i] << " ";
         }
         std::cout << std::endl;
@@ -138,7 +286,8 @@ namespace RangeBasedForLoop {
 void main_range_based_for_loop()
 {
     using namespace RangeBasedForLoop;
-    test_01(); 
+    test_00();
+    //test_01(); 
 }
 
 // =====================================================================================

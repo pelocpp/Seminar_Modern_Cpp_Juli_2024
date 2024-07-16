@@ -6,19 +6,50 @@ module modern_cpp:auto_keyword;
 
 namespace Auto_Examples {
 
+    // typedef
+    // using
+
+    using ReturnType = std::map<int, std::string>;
+
+    typedef std::map<int, std::string> ReturnType2;
+
+    // dictionary
     std::map<int, std::string> getFunction() { return {}; };
+
+    ReturnType getFunction2() { return {}; };
 
     static void test_01_a() {
 
         auto n = 123;    // n is type of int
 
         auto result = getFunction();
+
         std::map<int, std::string> result2 = getFunction();
     }
 
     // ---------------------------------------------------------------------
 
     static void test_01_b() {
+
+        long long l = 1;  // 8 Bytes
+        int n;   // 4 Bytes
+        n = (int) l;   // Expliziten Typkonvertierung
+
+
+        //// Python
+        //n = 123
+
+        //n = "asdasda"
+
+        //// JavaScript
+        //var n;
+
+        //let m;
+
+        auto a = 123;  // Type Deduction // Typherleitung
+        
+        auto z = 123.456;
+
 
         // auto figures out the below types
 
@@ -47,6 +78,53 @@ namespace Auto_Examples {
     {
         return f1 + f2;
     }
+
+
+    //static auto tueWas( bool flag, double d, float f) -> double
+    //{
+    //    if (flag == true) {
+    //        return f;
+    //    }
+    //    else {
+    //        return d;
+    //    }
+    //}
+
+    template <typename  T, typename U>
+    
+    static auto tueWas(bool flag, T d, U f) -> decltype (d + f)
+    {
+        if (flag == true) {
+            return f;
+        }
+        else {
+            return d;
+        }
+    }
+
+    template <typename T, typename U>
+
+    decltype (std::declval<T>() + std::declval<U>())
+        tueWas2(bool flag, T d, U f)
+    {
+        if (flag == true) {
+            return f;
+        }
+        else {
+            return d;
+        }
+    }
+
+    void test_tueWas()
+    {
+        auto result = tueWas2(false, 234.789, 234);
+    }
+
+
+
+
+
+
 
     static auto foo(bool flag, char ch, double d) -> double
     {
@@ -114,9 +192,22 @@ namespace Auto_Examples {
         return message;
     }
 
+    //static int& getAnotherMessage()
+    //{
+    //    int n = 123;
+    //    return n;
+    //}
+
+
+
     static void test_01_e() {
 
+        int x = 123;
+
+        decltype (x) y = 456;
+
         auto msg = getMessage();
+
         std::cout << "Message: " << msg << std::endl;
 
         // but:

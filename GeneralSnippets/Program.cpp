@@ -24,7 +24,7 @@ int main()
         //main_array();
         //main_array_decay();
         //main_attributes();
-        main_auto();
+        //main_auto();
         //main_back_inserter();
         //main_brace_initialization();
         //main_bind();
@@ -43,7 +43,7 @@ int main()
         //main_decltype();
         //main_default_initialization();
         //main_erase_remove_idiom();
-        //main_exercises();
+       // main_exercises();
         //main_expression_templates();
         //main_generate();
         //main_generic_lambdas();
@@ -72,7 +72,7 @@ int main()
         //main_raii();
         //main_raii_02();
         //main_random();
-        //main_range_based_for_loop();
+        main_range_based_for_loop();
         //main_reference_wrapper();
         //main_regular_expressions();
         //main_rvalue_lvalue();

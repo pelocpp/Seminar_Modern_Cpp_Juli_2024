@@ -14,17 +14,22 @@ namespace UniquePointerGeneral {
     static std::unique_ptr<int> loadUniquePointer()
     {
         std::unique_ptr<int> ptr{ std::make_unique<int>(100) };
-        return ptr;
+        (*ptr)++;
+
+        // return std::move(ptr);  // NIE !!!!!!!!!!!!!
+        std::unique_ptr<int> ptr2{ std::move(ptr) };
+        (*ptr2)++;
+        return ptr2; 
     }
 
     static void storeUniquePointer(std::unique_ptr<int>& ptr)
     {
         std::cout << "*ptr:    " << *ptr << std::endl;
-        (*ptr)++;
+        (*ptr)++;  // Soll symbolisch für das Arbeiten mit einem Smart Pointer stehen
         std::cout << "*ptr:    " << *ptr << std::endl;
 
         // take ownership right now:
-        // std::unique_ptr<int> ptr2{ std::move(ptr) };
+        std::unique_ptr<int> ptr2{ std::move(ptr) };  //  lokale Var. // delete
     }
 
     static void storeUniquePointerSafe(const std::unique_ptr<int>& ptr)
@@ -51,7 +56,11 @@ namespace UniquePointerGeneral {
     static void test_01()
     {
         // create a unique_ptr to an int with value 123
-        std::unique_ptr<int> ptr1{ new int{ 123 } };
+
+        int* pointer = new int{ 123 };
+
+        std::unique_ptr<int> ptr1{ pointer };  // Owner
+
         // or
         // std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
         // or
@@ -79,7 +88,12 @@ namespace UniquePointerGeneral {
 
         int* ip3{ ptr3.get() };
         (*ip3)++;
+
+        // ip3 ++;
+
         std::cout << "*ptr3:   " << *ptr3 << std::endl;
+
+        // ====> Destruktor: ptr1 ===>  delete 
     }
 
     static void test_02()
@@ -92,10 +106,13 @@ namespace UniquePointerGeneral {
         storeUniquePointer(ptr);
 
         // C++ Core Guidelines
-        storeUniquePointerAlternate(ptr.get());
+        // storeUniquePointerAlternate(ptr.get());
 
         // does this work?
-        std::cout << "*ptr:   " << *ptr << std::endl;
+
+        if (ptr != nullptr) {
+            std::cout << "*ptr:   " << *ptr << std::endl;
+        }
     }
 
     static void test_03()
@@ -245,16 +262,16 @@ namespace UniquePointerWrappingWin32Handles {
 
 void main_unique_ptr()
 {
-    //using namespace UniquePointerGeneral;
-    //test_01();
-    //test_02();
-    //test_03();
+    using namespace UniquePointerGeneral;
+    test_01();
+    test_02();
+    test_03();
 
-    //using namespace UniquePointer_SourceSinkPattern;
-    //test_04();
+    using namespace UniquePointer_SourceSinkPattern;
+    test_04();
 
-    //using namespace UniquePointerWrappingResourceHandles;
-    //test_05();
+    using namespace UniquePointerWrappingResourceHandles;
+    test_05();
 
     using namespace UniquePointerWrappingWin32Handles;
     test_06();

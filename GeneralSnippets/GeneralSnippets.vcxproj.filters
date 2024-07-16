@@ -672,6 +672,9 @@
     <ClCompile Include="TwoPhaseNameLookup\Module_TwoPhaseNameLookup.ixx">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Test_Namespace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Readme.md">
@@ -1174,5 +1177,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Notizzettel.txt" />
+    <Text Include="..\Notizzettel_Dienstag.txt" />
   </ItemGroup>
 </Project>

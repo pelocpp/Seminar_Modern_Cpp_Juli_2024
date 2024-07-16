@@ -37,7 +37,7 @@ namespace Exercises_Lambdas {
             }
         };
 
-        auto lambda = [](int val) -> bool {
+        auto lambda = [] (int val) -> bool {
 
             if ((val % 2) == 0) {
                 std::cout << val << " is even." << std::endl;

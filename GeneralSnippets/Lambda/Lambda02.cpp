@@ -8,9 +8,12 @@ namespace LambdaAndClosure {
 
     static void test_01()
     {
-        int n{ 10 };
+        int n{ 10 };  // Enclosing Scope
+
         auto lambda = [n] (int a) { return n + a; };
+        
         auto m = lambda(20);  // m is now 30
+        
         std::cout << "m: " << m << std::endl;
     }
 
@@ -22,7 +25,7 @@ namespace LambdaAndClosure {
             ClosureClass(int n) : m_n{ n } {}
 
             // if lambda is 'mutable' remove const-ness
-            int operator()(int a) const
+            int operator() (int a) const
             {
                 return m_n + a;
             }
@@ -32,8 +35,11 @@ namespace LambdaAndClosure {
         };
 
         const int n{ 30 };
+
         auto lambda = ClosureClass(n);
+
         auto m = lambda(20);    // m is now 50
+
         std::cout << "m: " << m << std::endl;
     }
 }

@@ -6,15 +6,35 @@ module modern_cpp:initializer_list;
 
 namespace InitializerList {
 
-    // function using std::initializer_list
-    static int adder (std::initializer_list<int> list)
+    static int adder(std::array<int, 5> list)
     {
         int result{};
 
+        // 2 Iteratoren : begin und end
+
         std::for_each(
-            std::begin(list),
-            std::end(list),
-            [&result](int value) {
+            list.begin(),
+            list.end(),
+            [&](int value) {
+                result += value;
+            }
+        );
+
+        return result;
+    }
+
+    // function using std::initializer_list
+    // static int adder (const std::vector<int>& list)
+    static int adder(std::initializer_list<int> list)
+    {
+        int result{};
+
+        // 2 Iteratoren : begin und end
+
+        std::for_each (
+            list.begin(),
+            list.end(),
+            [ & ](int value) {
                 result += value; 
             }
         );
@@ -34,7 +54,8 @@ namespace InitializerList {
     static void test_01() {
 
         // testing functions expecting lists in function call
-        int sum = adder({ 1, 2, 3, 4, 5 });
+        int sum = adder( { 1, 2, 3, 4, 5, 6, 7 } );
+
         std::cout << sum << std::endl;
 
         print({ 1, 2, 3, 4, 5 });
@@ -44,8 +65,11 @@ namespace InitializerList {
 
     static void test_02() {
 
-        std::initializer_list<int> list{ 1, 2, 3, 4, 5 };
-        std::vector<int> vec{ list };
+        std::initializer_list<int> list{ 1, 2, 3, 4, 5 };  // Stack
+
+        std::vector<int> vec{ list };  // Heap
+
+        vec.push_back(6);   // Heap
     }
 
     // =================================================================================
@@ -66,7 +90,8 @@ namespace InitializerList {
     };
 
     // container-like classes
-    class Polygon {
+    class Polygon
+    {
     public:
         Polygon(std::initializer_list<Point> points)
             : m_points{ points }

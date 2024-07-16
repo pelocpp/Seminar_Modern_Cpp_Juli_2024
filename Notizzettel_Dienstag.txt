@@ -1,0 +1,243 @@
+=====================================
+
+Guten Morgen
+
+C++ für Fortgeschrittene
+
+Dienstag
+
+Peter Loos
+
+=====================================
+
+Safety Programming:  Smart Pointer
+
+int* ip = new int(123);  // Besitzer // Owner
+
+Raw Pointer ==> Smart Pointer 
+
+...
+
+delete ip;
+
+Was ist das Problem: 
+
+Wer ruft wann delete auf ???????
+
+=========================================
+
+Idee:   
+
+A) OO:  Klassen // Objekte
+
+B) Objekte: Konstruktor
+            Destruktor
+
+C) Wann wird der Destruktor ausgerufen:
+
+   Wenn das Objekt aus dem Scope fällt
+   Wenn die Methode verlassen wird,
+   in der das Objekt angelegt wurde:
+
+   ==> Determinismus: Der Konstruktor WIRD aufgerufen.
+
+D) Hüllenklasse  // Hüllenobjekt:
+
+   Zeiger umschließen:
+
+   i)  Konstruktor:  new 
+   ii) Destruktor:   delete 
+
+E) std::auto_ptr: deprecated // veraltet
+
+F) std::unique_ptr
+   std::shared_ptr   ( std::weak_ptr )
+
+
+G) std::unique_ptr:
+
+   Zu einem Zeitpunkt im Programm kann es nur EINEN
+   Besitzer geben.
+
+   Wertzuweisung: GEHT NICHT!
+
+H) std::shared_ptr:
+
+   Zu einem Zeitpunkt im Programm kann es MEHRERE 
+   Besitzer geben.
+
+
+
+Frage: Gibt es Möglichkeiten, den 'delete' zu einem Zeiger AUTOMATISIERT aufzurufen.?
+
+
+
+=====================================
+
+Copy / Move Elision
+
+RVO ::  Return Value Optimization
+
+NRVO::  Named Return Value Optimization
+
+=====================================
+
+Shared Pointer
+=============
+
+Dieser ist Thread-Safe !!!
+
+Referenzzähler: Mutex // Für atomares Hoch- und Runterzählen !
+
+Schützt der Mutex auch den dynamisch angelegten Speicher: NEIN.
+
+=====================================
+
+std::unique_ptr
+
+std::shared_ptr
+
+1. Ansatz:
+
+==> Go for std::unique_ptr:   Handling (std::move)  // Owner
+
+2. Ansatz:
+
+==> Go for std::shared_ptr:   Benötige mehrere Besitzer
+
+ABER:
+=====
+
+std::shared_ptr: Er funktioniert nicht IMMER ?!?!?!?!?!?!?!
+
+Lösung / Weiteren Partner: std::weak_ptr
+
+Why ????
+
+Szenario:  Zyklus.
+
+Was ist die Moral von der Geschichte ??????????????????
+
+A) Wir verwenden std::shared_ptr
+
+B) Verwenden wir ausschließlich std::shared_ptr?
+
+Wo im Programm verwenden wir std::shared_ptr?
+
+  Dort, wo wir das Objekt haben wollen !!! Besitz
+
+Wo im Programm verwenden wir std::weak_ptr?
+
+  Dort, wo wir auf ein Objekt zugreifen wollen.
+  Wir wissen aber nicht, ob das Objekt noch vorhanden ist;
+  Mit dieser Situation haben wir KEIN PROBLEM.
+
+  Wir wollen mit einem weak_ptr partout vermeiden,
+  irgendeine Form von Besitz in Anspruch nehmen zu wollen.
+
+
+Beispiel:
+=========
+
+Observer-Pattern:   // Beobachter Pattern
+
+A) Ein Objekt, das ich beobachten möchte:  std::shared_ptr
+
+B) Die Beobachter:   std::shared_ptr
+
+Zyklus:
+
+== Ein Objekt (Subject), das ich beobachten möchte, kennt seine Beobachter
+
+== Die Beobachter kennen das zu beobachtende Objekt
+
+Frage: Wie kann / sollte ich hier weak_ptr zum Einsatz bringen ????
+
+Vorschlag:
+
+== Das Subject kennt Beobachter, aber nur in Form von weak_ptr'm:
+
+==> Das Subject wird NICHT ZUM Besitzer von Beobachtern.
+==> Beobachter können verschwinden (aus dem Speicher gehen)
+==> Subject: Ein Ereignis tritt ein:
+
+    Liste von Beobachtern (weak_ptr): lock => shared_ptr oder NULL
+
+=========================================================
+
+std::initializer_list:
+
+Ermöglicht es, an unterschiedlichen Orten im Quelltext
+
+beliebig viele Daten - desselben Typs - in einer 
+
+Listennotation zu verwenden.
+
+Syntax: In geschweiften Klammern { und }
+
+std::initializer_list:  ==>  Daten: Stack
+  versus
+std::vector:            ==>  Daten: Heap / Halde
+
+WARUM:
+
+A) Heap ist LANGSAM (ER)   // new, realloc, ..
+
+B) Heap kann begrenzt sein  (Embdedded)
+
+
+Vorsicht: std::initializer_list ist KEIN STL Container
+
+   Leichtgewichtiger Container:  begin(), end(), size()
+
+
+Konstruktoren mit einer variablen Anzahl von Parametern.
+
+std::vector<int> (5);    ==> { 0, 0, 0, 0, 0 }
+
+std::vector<int> { 5 };  ==> { 5  }
+
+// ======================================================
+
+std::vector  // variable SIZE
+
+vs
+
+std::array   // FIXED SIZE
+
+
+======================================================
+
+Range Based Loop:    for_each
+-----------------
+
+C++: "Wir bleiben modern"
+
+Wird aber auf "Vorhandenes" abgebildet
+
+Iteratoren-Konzept:
+-------------------
+
+Was ist ein Iterator:
+
+[]  ==> Sequential Container  => Daten: continous
+
+STL: Vector // Array
+
+Map:  Dictionary
+
+Baum oder Liste:
+
+Was ist das letzte Element ???
+
+Wächter // Sentinel
+
+// =================================================
+
+Es ist möglich, in EIGENEN Klassen auch das C++ Iteratoren Konzept
+zu realisieren.
+
+Ein Beispiel:
+
+https://github.com/pelocpp/cpp_case_studies/tree/master/CaseStudies/CollatzSequence
+

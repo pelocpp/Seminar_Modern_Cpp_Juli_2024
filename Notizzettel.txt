@@ -230,3 +230,60 @@ Ausnahmesicherheit / Exception Safety
 
 https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/ExceptionSafety/ExceptionSafety.md
 
+=================================================
+
+int a;
+
+func (double d);
+
+func (a);
+
+Antwort:
+
+C++:  Typkonvertierungen
+
+      Explizit  // Implizit
+
+Wenn eine Variable OHNE INFORMATIONSVERLUST
+   an eine Variable ANDEREN DATENTYPS zugewiesen wird:
+
+   Das geht: Impliziten Typkonvertierung.
+
+long l;  // 8 Bytes
+
+int n;   // 4 Bytes
+
+n = (int) l;   // Expliziten Typkonvertierung
+
+=========================================================
+
+Lambda
+// Lambda-Funktionen
+Lambda-Objekte
+
+Historisch Ableitung in C++
+
+Übergabe von Funktionen an andere Funktionen
+
+i)  A la C: Funktionszeiger
+
+ii) Aufrufbares Objekt
+
+==============================================
+
+Cpp Insights
+
+==============================================
+
+Dennis Rithchie
+
+"A programmer knows what he does"
+
+==============================================
+
+
+Aufgaben zur Move-Semantik
+
+Aufgabe 1:
+
+==============================================
