@@ -68,7 +68,10 @@ namespace GenericLambdas {
     static void test_04()
     {
         // define a generic lambda
-        auto isGreaterThanFifty = [](const auto& n) { return n > 50; };
+        // concept 
+        auto isGreaterThanFifty = [](const auto& n) {
+            return n > 50; 
+            };
 
         std::vector<int> intValues{ 44, 65, 22, 77, 2 };
 
@@ -93,6 +96,18 @@ namespace GenericLambdas {
         if (it2 != std::end(doubleValues)) {
             std::cout << "Found a value: " << *it2 << std::endl;
         }
+
+        //std::vector<std::string> stringValues{ "" };
+
+        //// use exactly the *same* generic lambda with a vector of doubles
+        //auto it3 = std::find_if(
+        //    std::begin(stringValues),
+        //    std::end(stringValues),
+        //    isGreaterThanFifty
+        //);
+        //if (it2 != std::end(doubleValues)) {
+        //    std::cout << "Found a value: " << *it2 << std::endl;
+        //}
     }
 
     template <typename T>

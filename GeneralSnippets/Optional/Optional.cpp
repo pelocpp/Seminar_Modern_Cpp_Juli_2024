@@ -49,18 +49,34 @@ namespace OptionalExamples {
 
     private:
         std::optional<std::string> m_phone;
+        std::string m_phoneHome;
 
     public:
-        Contact() : m_phone{ std::nullopt } {}
+        Contact() : m_phone{ std::nullopt }, m_phoneHome{ "" } {}
 
-        void setPhone(std::string phone) { m_phone = phone; }
+        void setPhone(std::string phone) 
+        {
+            // Überprüfung - entweder Zeichenkette übernehmen ... oder std::nullopt
 
-        std::optional<std::string> getPhone() { return m_phone; }
+            m_phone = phone;
+        }
+
+        std::optional<std::string> getPhone()
+        {
+            return m_phone;
+        }
+
+        const std::string& getPhoneHome()
+        {
+            return m_phoneHome;
+        }
     };
 
     static void test_02_optional() {
 
         Contact contact{};
+
+        const std::string& home = contact.getPhoneHome();
 
         if (contact.getPhone()) {
             std::cout << "Number: " << contact.getPhone().value() << std::endl;
@@ -72,6 +88,9 @@ namespace OptionalExamples {
         contact.setPhone("123456789");
 
         if (contact.getPhone()) {
+
+            std::string p{ *contact.getPhone() };
+
             std::cout << "Number: " << *contact.getPhone() << std::endl;
         }
         else {

@@ -66,13 +66,13 @@ int main()
         //main_modularized_standard_library(); 
         //main_modules_import();
         //main_move_semantics();
-        //main_optional();
+        // main_optional();
         //main_perfect_forwarding();
         //main_placement_new();
         //main_raii();
         //main_raii_02();
         //main_random();
-        main_range_based_for_loop();
+        //main_range_based_for_loop();
         //main_reference_wrapper();
         //main_regular_expressions();
         //main_rvalue_lvalue();
@@ -101,7 +101,7 @@ int main()
         //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();
-        //main_variant();
+        main_variant();
         //main_virtual_base_class_destructor();
         //main_virtual_override_final();
         //main_weak_pointer();

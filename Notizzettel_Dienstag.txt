@@ -241,3 +241,50 @@ Ein Beispiel:
 
 https://github.com/pelocpp/cpp_case_studies/tree/master/CaseStudies/CollatzSequence
 
+========================================================================
+
+std::optional
+
+// 100%
+int  n;
+bool isValid;  true / false
+
+Das ist die Funktionalität von std::optional
+
+
+n = 123;  ok, kann sein
+
+n = 0;    ???
+
+n = -1;
+
+Frage: Wann hat n einen (gültigen // validen) Wert ???
+
+n = 0; Nein   Doch auch 0 kann sein.
+
+n = -1;  Nein   Doch auch -1 kann sein.
+
+n = -MaxInt;  Nein   Doch auch -MaxInt kann sein.
+
+================================================================
+
+Variant   C++ 17
+
+Kann Daten unterschiedlichen Typs aufnehmen.
+
+Excel:  ==>  Zelle / Cell:   Zahl, Datum, Geldbetrag, Zeichenkette , 
+
+std::variant   .......Ähnlichkeiten: C union
+
+Wozu
+
+===================================================
+
+C#, Java:   Typen zur Laufzeit  Reflection !!!!
+
+C++:   Mini Reflection
+
+if - zur Runtime / Laufzeit
+
+if - zur Übersetzungszeit / Compiletime
+
