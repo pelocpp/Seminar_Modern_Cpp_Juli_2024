@@ -675,6 +675,9 @@
     <ClCompile Include="Test_Namespace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Test_Generate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Readme.md">
@@ -1178,5 +1181,6 @@
   <ItemGroup>
     <Text Include="..\Notizzettel.txt" />
     <Text Include="..\Notizzettel_Dienstag.txt" />
+    <Text Include="..\Notizzettel_Mittwoch.txt" />
   </ItemGroup>
 </Project>

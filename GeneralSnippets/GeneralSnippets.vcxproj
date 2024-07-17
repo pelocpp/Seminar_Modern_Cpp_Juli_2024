@@ -330,6 +330,7 @@
     <ClCompile Include="TemplateTemplateParameter\Module_TemplateTemplateParameter.ixx" />
     <ClCompile Include="TemplateTemplateParameter\TemplateTemplateParameter_01.cpp" />
     <ClCompile Include="TemplateTemplateParameter\TemplateTemplateParameter_02.cpp" />
+    <ClCompile Include="Test_Generate.cpp" />
     <ClCompile Include="Test_Namespace.cpp" />
     <ClCompile Include="ToUnderlying\Module_ToUnderlying.ixx" />
     <ClCompile Include="ToUnderlying\ToUnderlying.cpp" />
@@ -539,6 +540,7 @@
   <ItemGroup>
     <Text Include="..\Notizzettel.txt" />
     <Text Include="..\Notizzettel_Dienstag.txt" />
+    <Text Include="..\Notizzettel_Mittwoch.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

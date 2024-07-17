@@ -4,6 +4,111 @@
 
 module modern_cpp:variadic_templates;
 
+namespace VariadicTemplatesIntro_Seminar {
+
+    // C++ 11
+    template <typename T>
+    void printer(T n)
+    {
+        std::cout << n << std::endl;
+    }
+
+    template <typename T, typename ... TArgs>  // einpacken
+    void printer(T n, TArgs ... args)          // einpacken
+    {
+        std::cout << n << std::endl;
+        printer<TArgs ...>(args ...);          // auspacken // Type Deduction
+    }
+
+    // C++ 17
+    template <typename T, typename ... TArgs>  // einpacken
+    void printer2(T n, TArgs ... args)          // einpacken
+    {
+        std::cout << n << std::endl;
+
+        if constexpr ( sizeof ... (  args ) > 0 )
+        {
+            printer2<TArgs ...>(args ...);          // auspacken // Type Deduction
+        }
+    }
+    
+    static void test_printer_seminar ()
+    {
+        printer<int, int, int, int>(1, 2, 3, 4);
+
+        printer(1, 2, 3, 4);          // Type Deduction
+    }
+
+    // ========================================================
+
+    // std::make_unique
+
+        // ========================================================================
+    // Test-Klasse Unknown
+    // Nur die Konstruktoren sind interessant
+    // ========================================================================
+
+    class Unknown
+    {
+    private:
+        int m_var1;
+        int m_var2;
+        int m_var3;
+
+    public:
+        Unknown() : m_var1{ -1 }, m_var2{ -1 }, m_var3{ -1 } {
+            std::cout << "c'tor()" << std::endl;
+        }
+
+        Unknown(const Unknown& other) 
+            : m_var1{ other.m_var1 }, m_var2{ other.m_var2 }, m_var3{ other.m_var3 } {
+            std::cout << "copy c'tor(const Unknown&)" << std::endl;
+        }
+
+        Unknown(Unknown&& other) noexcept
+            : m_var1{ other.m_var1 }, m_var2{ other.m_var2 }, m_var3{ other.m_var3 } {
+            std::cout << "move c'tor(Unknown&&)" << std::endl;
+        }
+
+        Unknown(int n) : m_var1{ n }, m_var2{ -1 }, m_var3{ -1 } {
+            std::cout << "c'tor(int)" << std::endl;
+        }
+
+        Unknown(int n, int m) : m_var1{ n }, m_var2{ m }, m_var3{ -1 } {
+            std::cout << "c'tor(int, int)" << std::endl;
+        }
+
+        Unknown(int n, int m, int k) : m_var1{ n }, m_var2{ m }, m_var3{ k } {
+            std::cout << "c'tor(int, int, int)" << std::endl;
+        }
+    };
+
+    template <typename T, typename ... TArgs>
+    std::unique_ptr<T> my_make_unique(TArgs ... args)
+    {
+        std::unique_ptr<T> up{ new T { args ...  } };
+        return up;
+    }
+
+    static void test_make_unique_seminar()
+    {
+        std::unique_ptr<Unknown> up =
+            
+            my_make_unique<Unknown, int, int, int>(11, 12, 13);
+    }
+
+    static void test_vector_seminar()
+    {
+        std::vector<Unknown> vec;
+        vec.reserve(10);
+
+        // vec.push_back(Unknown { 11, 12, 13} );
+
+       vec.emplace_back(11, 12, 13);
+       vec.emplace_back(21, 22, 23);
+    }
+}
+
 namespace VariadicTemplatesIntro_01 {
 
     // ====================================================================
@@ -293,6 +398,13 @@ namespace VariadicTemplatesIntro_05 {
 
 void main_variadic_templates_introduction()
 {
+    using namespace VariadicTemplatesIntro_Seminar;
+   // test_printer_seminar();
+    //test_make_unique_seminar();
+    test_vector_seminar();
+    return;
+
+
     using namespace VariadicTemplatesIntro_01;
     test_printer_01();
 

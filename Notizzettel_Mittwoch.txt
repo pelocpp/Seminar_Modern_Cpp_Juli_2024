@@ -1,0 +1,108 @@
+=====================================
+
+Guten Morgen
+
+C++ für Fortgeschrittene
+
+Mittwoch
+
+Peter Loos
+
+=====================================
+
+Ablauf:
+
+== Variadic Templates
+== std::generic
+
+== Mittagspause: Übungsteil
+
+=====================================
+
+C++ 11 :
+
+Variadic Templates: 
+
+>>> Sehen, Anwenden (std::make_unique)
+
+>>> Selbst schreiben
+
+-------------------------------------
+
+C++:        Bjarne Stroustrup  :  C with Classes
+
+Templates:  Alexander Stepanov:   Generische Programming
+
+Bjarne Stroustrup  ==> STL Standard Template Library
+
+===================================================
+
+Argumente:
+
+Nomenklatur:   "Viele Parameter" ==> Parameter Pack
+
+Pack ==> kreieren 
+Pack ==> auspacken
+
+Loop: C++ 26: for ...
+
+Auch in C++ 11 : Loop - Nicht als Teil der Sprache.
+
+===================================================
+
+2 Hilfestellungen:
+
+== Debugger
+
+== Cpp Insights
+
+===================================================
+
+Wozu ????????????????????????????????????
+
+Why ?????????????????????????????????????
+
+A) std::make_unique
+
+B) emplace_back
+
+===================================================
+
+https://www.mythos-nbg.de
+
+std::fill oder for-Schleife ???????
+
+Go for std::fill:
+
+Optimierung: Mit std::memset gut möglich
+
+===================================================
+
+== Smart Pointer
+
+   -- Aufgabe 1
+   -- Aufgabe 2
+   -- Aufgabe 4   std::weak_ptr
+
+
+== Variadic Templates
+
+   -- Aufgabe 1
+   -- Aufgabe 2
+
+== Aufgaben zu STL-Algorithmen
+
+   -- Aufgabe 2  // Fibnacci
+
+
+
+
+
+
+
+Was ist Short-Circuit-Evaluation ???
+
+if (a > b || c > d) ...
+
+
+

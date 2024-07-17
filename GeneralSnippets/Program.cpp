@@ -7,6 +7,8 @@ import modern_cpp_exercises;
 
 import std;
 
+extern void test_generate();
+
 #pragma message("Collection of Modern C++-Code Examples - Copyright (C) 2019-2024 Peter Loos")
 
 int main()
@@ -16,6 +18,8 @@ int main()
     // main entry points code snippets
     try
     {
+        test_generate();
+
         //main_accumulate();
         //main_allocator();
         //main_any();
@@ -101,7 +105,7 @@ int main()
         //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();
-        main_variant();
+        //main_variant();
         //main_virtual_base_class_destructor();
         //main_virtual_override_final();
         //main_weak_pointer();
