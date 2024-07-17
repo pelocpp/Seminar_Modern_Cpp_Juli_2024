@@ -84,7 +84,6 @@ Optimierung: Mit std::memset gut möglich
    -- Aufgabe 2
    -- Aufgabe 4   std::weak_ptr
 
-
 == Variadic Templates
 
    -- Aufgabe 1
@@ -92,10 +91,13 @@ Optimierung: Mit std::memset gut möglich
 
 == Aufgaben zu STL-Algorithmen
 
-   -- Aufgabe 2  // Fibnacci
+Test_Generate.cpp
+-----------------
 
+   -- Aufgabe 2  // Fibonacci
 
-
+VariadicTemplate_01_Introduction.cpp
+------------------------------------
 
 
 
