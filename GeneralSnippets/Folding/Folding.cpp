@@ -4,6 +4,51 @@
 
 module modern_cpp:folding;
 
+namespace Folding_Seminar {
+
+    template <typename ... TArgs>
+    auto addierer(TArgs ... args) {
+
+        auto result = ( ... + args );
+
+        return result;
+    }
+
+    template <typename ... TArgs>
+    auto subtrahierer(TArgs ... args) {
+
+        auto result = (args  - ...);
+
+        return result;
+    }
+
+    auto subtrahiererEx(std::integral auto ... args) {
+
+        return (args - ...);
+    }
+
+    void printer(auto first, auto ... args) {
+
+        // (std::cout << ... << args);
+
+        // "Folding über einem Komma"
+        std::cout << first;
+        (... , ( std::cout << " - " << args ));
+    }
+
+    void seminar_folding() {
+
+        // (1 - 2) - 3 = -4
+        // 1 - (2 - 3) = +2
+
+        printer(1, 2.0, "ABC", '?');
+
+        std::cout << std::endl;
+   }
+}
+
+
+
 namespace Folding {
 
     /* folding examples: introduction
@@ -128,8 +173,15 @@ namespace Folding {
     }
 }
 
+
+
+
 void main_folding()
 {
+    using namespace Folding_Seminar;
+    seminar_folding();
+    return;
+
     using namespace Folding;
     test_01();
     test_02();

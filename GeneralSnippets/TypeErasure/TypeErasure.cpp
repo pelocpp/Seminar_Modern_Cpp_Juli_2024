@@ -424,7 +424,7 @@ namespace BookStoreUsingTypeErasure {
         size_t getCount() const { return m_count; }
     };
 
-    class Movie
+    class Movie 
     {
     private:
         std::string m_title;

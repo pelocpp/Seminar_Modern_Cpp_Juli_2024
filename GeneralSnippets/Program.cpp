@@ -98,11 +98,11 @@ int main()
         //main_trim(); 
         //main_tuple(); 
         //main_two_phase_name_lookup();
-        //main_type_erasure();
+        main_type_erasure();
         //main_type_traits();
         //main_unique_ptr();
         //main_variadic_templates_introduction();
-        main_variadic_templates_working_on_every_argument();
+        //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();
         //main_variant();

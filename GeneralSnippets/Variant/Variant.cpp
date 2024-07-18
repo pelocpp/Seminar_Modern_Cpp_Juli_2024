@@ -190,7 +190,10 @@ namespace VariantDemo {
     static void test_05() {
 
         std::vector<std::variant<int, long, long long, float, double>>
-            vec = { 100, 200l, 300ll, 400.5f, 500.5 };
+        vec = { 
+            100, 200l, 300ll, 400.5f, 500.5 
+        };
+
 
         // display each value
         std::cout << "Values:      ";
@@ -279,9 +282,9 @@ void main_variant()
     using namespace VariantDemo;
     //test_01();
     //test_02();
-    test_03();
+    //test_03();
     //test_04();
-    //test_05();
+    test_05();
     //test_06();
     //test_07();
 }

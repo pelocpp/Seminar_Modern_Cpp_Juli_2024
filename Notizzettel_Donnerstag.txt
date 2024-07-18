@@ -32,4 +32,42 @@ Peter Loos
 
 == friend, overload ...
 
+=================================================
 
+== Folding  // Abrollen
+
+Möglichkeit:
+
+Wiederholte Anwendung EINES Operators:
+
+Beispiel:  1 + 2 + 3 + 4 + 5 + 6
+
+   - Kompakte Schreibweise
+   - Performanter Code
+
+====================================================
+
+== Vergleich (Performanzbetrachtung)
+   von statischem Polymorphismus (Templates)
+   mit dynamischem Polymorphismus (virtueller Methodenaufrufmechanismus)
+
+Techniken:
+
+C++:   Go for STL Container
+
+STL Container:
+
+-- Sie verwalten Daten
+-- Von welchem Typ sind diese Daten: T -- vom selben Typ
+
+   Homogener Container
+
+   Vererbung:
+  
+        Zeiger // Container mit Zeigern
+   
+        // "Unterschiedliche Objekte"
+
+   Heterogener Container
+
+std::variant
