@@ -44,9 +44,22 @@ Nomenklatur:   "Viele Parameter" ==> Parameter Pack
 Pack ==> kreieren 
 Pack ==> auspacken
 
+SYNTAX: Was bedeutet auspacken bzgl. der SYNTAX:
+
+1, 2, 3  ===> args
+
+args ...   ===> 1, 2, 3 
+
+SYNTAX: Aus args wird eine KOMMA getrennte Liste der Parameter
+erzeugt.
+
 Loop: C++ 26: for ...
 
 Auch in C++ 11 : Loop - Nicht als Teil der Sprache.
+
+Sondern mit:  std::initializer_list 
+
+Komma - Operator
 
 ===================================================
 
@@ -108,3 +121,68 @@ if (a > b || c > d) ...
 
 
 
+=========================================================
+
+const
+
+constexpr
+
+constexpr - Anweisungen werden vom Übersetzer ausgeführt.
+---------------------------------------------------------
+
+Hilfestellungen:  
+
+
+===================================================
+
+Weiterleiten von Werten
+
+Perfektes Weiterleiten von Werten
+
+Perfect Forwarding
+
+===================================================
+
+
+Konzepte (Concepts) und Einschränkungen (Requirements) für Funktionen
+
+===================================================
+
+Structured Binding
+
+C++ 17
+
+std::tie   // kleine Structured Binding - ab C++ 11
+
+
+
+Rückgabewert der Funktion mit [[nodiscard]]-Attribut wird verworfen	
+
+// =================================
+
+Donnerstag:
+
+== Folding
+
+== Benutzerdefinierte Literale
+
+== Neue Utility Klassen
+
+== Vergleich (Performanzbetrachtung)
+   von statischem Polymorphismus (Templates)
+   mit dynamischem Polymorphismus (virtueller Methodenaufrufmechanismus)
+
+   Beispiel „Buchhandlung”
+
+== Safe Programming / Performant:
+
+   Best Practices  // Lint // Resharper
+
+== Multi-Threading
+
+== Ausblick
+
+== friend, overload ...
+
+
+// WAnn hören wir auf:  16.30 // 16 

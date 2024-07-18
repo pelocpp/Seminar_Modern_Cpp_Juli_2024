@@ -11,25 +11,47 @@ namespace VariadicTemplatesWorkingOnEveryArgument {
     // Parameter Pack Expansion mit Hilfe von std::initializer_list
     // ====================================================================
 
+
+    [[ nodiscard ]]   int berechneWasWichtiges()
+    {
+        return 999;
+    }
+
+
     template <typename T>
-    void doSomething(const T& value) {
+   /* [[ deprecated  ]]*/  void doSomething(const T& value) {
         std::cout << "got value " << value << std::endl;
     }
 
     // doesn't compile
     //template <typename... TArgs>
     //void doSomethingForAll(const TArgs& ... args) {
-    //    doSomething(args)...;
+    //    doSomething(args) ...;  // ERROR
     //}
 
     template <typename... TArgs>
-    void doSomethingForAll(const TArgs& ... args) {
-        // std::initializer_list<int> list = { (doSomething(args), 0)... };
-        std::initializer_list<int> { (doSomething(args), 0)... };
+    void doSomethingForAll2(const TArgs& ... args) {
+        // doSomething(args) ...;  // ERROR
+       std::initializer_list<int> list { ( doSomething(args) , 123 ) ... };
     }
 
+    //template <typename... TArgs>
+    //void doSomethingForAll(const TArgs& ... args) {
+    //    // std::initializer_list<int> list = { (doSomething(args), 0)... };
+    //    std::initializer_list<int> { (doSomething(args), 0)... };
+    //}
+
     static void test_01() {
-        doSomethingForAll(1, '!', std::string("ABC"), 5.5);
+
+
+        berechneWasWichtiges();  // was passiert mit dem Ergebnis ?????
+
+        //int a, b, c;
+        //int x = 0;
+        //x = a = 1, b = 2, c = 3;
+
+        doSomethingForAll2(1, '!', std::string("ABC"), 5.5, 1, 2, 3, 4, 5);
+
         std::cout << std::endl;
     }
 
@@ -82,8 +104,8 @@ void main_variadic_templates_working_on_every_argument()
 {
     using namespace VariadicTemplatesWorkingOnEveryArgument;
     test_01();
-    test_02_01();
-    test_02_02();
+    //test_02_01();
+    //test_02_02();
 }
 
 // =====================================================================================

@@ -71,16 +71,16 @@ namespace ConstVariants {
 
     static void test_03()
     {
-        // consteval auto x = 123; // error: 'x' cannot be declared with 'consteval' specifier
+       // consteval auto x = 123; // error: 'x' cannot be declared with 'consteval' specifier
 
         constexpr auto a{ sum_consteval(111, 222) };
         static_assert(a == 333);
 
-        auto b{ 10 };
+        constexpr auto b{ 10 };
 
         auto c{ sum_constexpr(b, 10) };        // fine with constexpr function
 
-        // auto d{ sum_consteval(b, 10) };     // Error! the value of 'b' cannot be used as constant
+        auto d{ sum_consteval(b, 20) };     // Error! the value of 'b' cannot be used as constant
     }
 
     // ============================================================

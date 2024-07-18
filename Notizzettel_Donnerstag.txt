@@ -1,0 +1,35 @@
+=====================================
+
+Guten Morgen
+
+C++ für Fortgeschrittene
+
+Donnerstag
+
+Peter Loos
+
+=====================================
+
+== Folding
+
+== Benutzerdefinierte Literale
+
+== Neue Utility Klassen
+
+== Vergleich (Performanzbetrachtung)
+   von statischem Polymorphismus (Templates)
+   mit dynamischem Polymorphismus (virtueller Methodenaufrufmechanismus)
+
+   Beispiel „Buchhandlung”
+
+== Safe Programming / Performant:
+
+   Best Practices  // Lint // Resharper
+
+== Multi-Threading
+
+== Ausblick
+
+== friend, overload ...
+
+

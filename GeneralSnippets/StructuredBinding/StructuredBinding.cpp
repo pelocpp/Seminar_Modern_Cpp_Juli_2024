@@ -25,7 +25,7 @@ namespace StructuredBinding {
 
     static void test_02() {
 
-        auto [quotient, remainder] = divide_remainder(20, 3);
+        auto [ quotient, remainder ] = divide_remainder(20, 3);
 
         std::cout << "20 / 3 is "
             << quotient << " with a remainder of "
@@ -34,9 +34,16 @@ namespace StructuredBinding {
 
     static void test_03() {
 
-        int arr[] = { 123, 456, 789 };
-        auto [ a, b, c ] = arr;
+        int arr[3] = { 123, 456, 789 };
+
+        auto& [ a, b, c ] = arr;
+
         std::cout << a << ", " << b << ", " << c << std::endl;
+
+        a = 999;
+
+        std::cout << arr[0] << ", " << b << ", " << c << std::endl;
+
     }
 
     static void test_04() {
@@ -114,13 +121,13 @@ namespace StructuredBinding {
 void main_structured_binding()
 {
     using namespace StructuredBinding;
-    test_01();
-    test_02();
+    //test_01();
+    //test_02();
     test_03();
-    test_04();
-    test_05();
-    test_06();
-    test_07();
+    //test_04();
+    //test_05();
+    //test_06();
+    //test_07();
 }
 
 // =====================================================================================

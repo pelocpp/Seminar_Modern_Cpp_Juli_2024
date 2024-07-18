@@ -71,7 +71,7 @@ namespace GenericLambdas {
         // concept 
         auto isGreaterThanFifty = [](const auto& n) {
             return n > 50; 
-            };
+        };
 
         std::vector<int> intValues{ 44, 65, 22, 77, 2 };
 

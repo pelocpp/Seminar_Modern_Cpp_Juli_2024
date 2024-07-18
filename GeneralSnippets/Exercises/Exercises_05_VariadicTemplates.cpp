@@ -18,6 +18,16 @@ namespace Exercises_VariadicTemplates {
 
         template<typename T, typename ... TRest>
         bool andAll(T cond, TRest ... conds) {
+
+            // auch eine Möglichkeit
+            if (!cond) {
+                return false;
+            }
+            else {
+                return andAll(conds...);
+            }
+
+            // 1. Variante
             return cond && andAll(conds...);
         }
 
@@ -88,6 +98,7 @@ namespace Exercises_VariadicTemplates {
         template<typename T1, typename T2>
         bool sameType(T1 arg1, T2 arg2)
         {
+            // nur für die Ausgabe
             std::cout << " # " << arg1 << ": " << typeid(arg1).name();
             std::cout << " - " << arg2 << ": " << typeid(arg2).name() << std::endl;
 

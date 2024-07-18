@@ -50,7 +50,8 @@ namespace VariantDemo {
 
         // -------------------------------------------------
         
-        // std::get returns a reference, so you can change the value:
+        // std::get returns a reference,
+        // so you can change the value:
 
         std::get<std::string>(var) += std::string{ " World" };
 

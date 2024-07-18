@@ -14,9 +14,21 @@ concept NumericalEx = std::is_integral<T>::value || std::is_floating_point<T>::v
 
 namespace Requires_Clause {
 
+
+    // Für T geht alles, was den Ausdruck 'a+b' unterstützt
+    // Reagierend ==> Wenn es nicht geht, dann gibt es einen Fehler
+
+    // Proaktiv
+
     template <typename T>
-        requires Numerical<T>
+       requires NumericalEx<T>
     auto add(T a, T b)
+    {
+        return a + b;
+    }
+
+
+    auto add2(NumericalEx auto a, NumericalEx auto b)
     {
         return a + b;
     }
@@ -26,7 +38,7 @@ namespace Requires_Clause {
         requires std::integral<T> || std::floating_point<T>
     auto addEx(T a, T b)
     {
-        return a + b;
+        return a + b;   // 
     }
 
     static void test_concepts_requires_01()
@@ -48,7 +60,7 @@ namespace Requires_Clause {
         //    the concept 'Numerical<std::string>' evaluated to false
         //    the concept 'std::floating_point<std::string>' evaluated to false
         //    the concept 'std::integral<std::string>' evaluated to false
-        // auto sum4 = add(std::string { "ABC" }, std::string { "DEF" });
+      //  auto sum4 = add(std::string { "ABC" }, std::string { "DEF" });
     }
 
     // ---------------------------------------------------------------------------------
@@ -206,14 +218,18 @@ namespace UserDefined_Concept {
         return arg + 1;
     }
 
+    auto incrementByOneEx(auto arg) {
+        return arg + 1;
+    }
+
     static void test_user_defined_concept()
     {
-        int n{ 123 };
-        n = incrementByOne(n);
+        long n{ 123 };
+        long long nn = incrementByOneEx<long long>(  n);
 
-        // short s{ 1 };
-        // the associated constraints are not satisfied:
-        // s = incrementByOne(s);
+         //short s{ 1 };
+         //the associated constraints are not satisfied:
+         //s = incrementByOne(s);
     }
 }
 

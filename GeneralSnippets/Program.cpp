@@ -18,7 +18,7 @@ int main()
     // main entry points code snippets
     try
     {
-        test_generate();
+      //  test_generate();
 
         //main_accumulate();
         //main_allocator();
@@ -37,7 +37,7 @@ int main()
         //main_concepts_requires_classes();
         //main_concepts_requires_functions();
         //main_constructor_invocations();
-        //main_constexpr();
+       // main_constexpr();
         //main_constexpr_02();
         //main_constexpr_crc();
         //main_const_variants();
@@ -47,7 +47,7 @@ int main()
         //main_decltype();
         //main_default_initialization();
         //main_erase_remove_idiom();
-       // main_exercises();
+      // main_exercises();
         //main_expression_templates();
         //main_generate();
         //main_generic_lambdas();
@@ -71,7 +71,7 @@ int main()
         //main_modules_import();
         //main_move_semantics();
         // main_optional();
-        //main_perfect_forwarding();
+      //  main_perfect_forwarding();
         //main_placement_new();
         //main_raii();
         //main_raii_02();
@@ -102,7 +102,7 @@ int main()
         //main_type_traits();
         //main_unique_ptr();
         //main_variadic_templates_introduction();
-        //main_variadic_templates_working_on_every_argument();
+        main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();
         //main_variant();

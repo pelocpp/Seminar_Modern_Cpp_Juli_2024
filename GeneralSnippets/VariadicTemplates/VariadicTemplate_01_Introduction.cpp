@@ -83,18 +83,29 @@ namespace VariadicTemplatesIntro_Seminar {
         }
     };
 
+    //template <typename T, typename ... TArgs>
+    //std::unique_ptr<T> my_make_unique(TArgs ... args)
+    //{
+    //    std::unique_ptr<T> up{ new T { args ...  } };
+    //    return up;
+    //}
+
     template <typename T, typename ... TArgs>
-    std::unique_ptr<T> my_make_unique(TArgs ... args)
+    std::unique_ptr<T> my_make_unique(TArgs&& ... args)
     {
-        std::unique_ptr<T> up{ new T { args ...  } };
+        std::unique_ptr<T> up{ 
+            new T { std::forward<TArgs>(args) ... }
+        };
         return up;
     }
 
     static void test_make_unique_seminar()
     {
+        int n = 12;
+
         std::unique_ptr<Unknown> up =
             
-            my_make_unique<Unknown, int, int, int>(11, 12, 13);
+            my_make_unique<Unknown>(n, 12, 13);
     }
 
     static void test_vector_seminar()
