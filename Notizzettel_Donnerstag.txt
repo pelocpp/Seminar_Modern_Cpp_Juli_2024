@@ -71,3 +71,177 @@ STL Container:
    Heterogener Container
 
 std::variant
+
+====================================================
+
+== Nur gesehen ...
+
+== std::thread
+
+== std::mutex
+
+== std::async
+
+Was ist MT:
+
+==> Mehreren Kernen
+
+Mehrere "Unterprogramme" zur SELBEN Zeit ablaufen lassen.
+
+==> Betriebssystem:   Win32  // CreateThread
+
+                     Unix:   fork
+
+==> C++:    Möglichkeiten des unterlagerten
+            Betriebssystems in Klassen // Bibliothek integriert
+
+===============================================
+
+Windows:
+
+Wie lange laufen Threads ????
+
+==> Solange , wie der primäre Thread am Leben ist.
+
+=================================================
+
+Reden wir über einzelne Threads oder einen Thread Pool ?????
+
+================================================
+
+Mutex   => Mutual Exclusion  => Gegenseitiger Ausschluss
+
+Folge von Anweisungen:     Dann kann er nicht
+
+   von einem anderen Thread unterbrochen werden.
+
+	
+================================================
+
+Future  // Promises
+
+C++
+
+Nachteil:  
+
+================================================
+
+"Normalen" Thread oder einem Thread aus einem Thread - Pool ???
+
+>> "Normalen" Thread :  Historie
+
+     EINMAL ausgeführt werden.
+
+>> Thread - Pool:
+
+    Thread-Objekte: Diese "schlafen"  ... und können mehrere Male
+    eine Funktion ausführen ... die Funktion wird mit ihrer Adresse
+    an den Pool übergeben.
+
+
+================================================
+
+std::async:   Kreiert einen Datenkanal zwischen Thread und Client.
+
+   std::future.
+
+
+================================================
+
+==> Ca. 15 Uhr:  MT 
+
+== std::condition_variable
+
+       Welche Locks ... std::guard_lock
+
+== Consumer - Producer Problem
+
+== Event Queue
+
+================================================
+
+
+Mutex:    Ausschluss:  Lock / Unlock
+
+          std::cout
+
+
+
+Kooperation:  std::condition_variable
+
+     ==> Bedingung nicht erfüllt:   wait  // Bedingung : Lambda (true / false)
+
+     ==> Bedingung ist erfüllt:     notify  
+
+                                    notify_all // notify_one
+
+Historie:  
+
+ std::condition_variable : ab C++ 11
+ std::semaphore          : ab C++ 20
+
+
+
+Frage: Wer wacht wann auf ???
+
+A) Dokumentation: Hierzu gibt es keine Aussage.
+
+B) Beobachtung:   Realisierung: Der erste, der blockiert wird, wird aufgeweckt.
+
+=====================================================================
+
+== Safe Programming / Performant:
+   Best Practices  // Lint // Resharper
+
+== Fazit für Modern C++:
+
+A) A) C++: Werkzeuge
+
+   STL:  Container, Algorithmen  : Go for STL
+
+   for ... ==> std::for_each ....
+
+   for: Indices 
+
+   Aber: std::for_each : Argumente in einem BEREICH (begin(), end())
+
+B) B) Zeiger / Pointer:
+
+   Go for Smart Pointer (std::unique, std::shared (std::weak))
+
+C) C) Robustheit der SW // Vermeidung von Abstürzen
+
+   "Sicherheit bzgl. Ausnahmen"  Exception Safety
+
+   Guide Lines
+
+   https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/ExceptionSafety/ExceptionSafety.md
+
+   D) RAII bzgtl. Ressources
+
+   ===> Jede Form von Ressources ist via Hüllenobjekten zu verwenden.
+
+        Destruktor  ==> Detach // Close // Release ...
+
+
+E) Das Copy-and-Swap Idiom
+
+F) noexcept
+
+        void moveFrom(BigData&) noexcept;  
+
+        std::vector  ==> Copy - Constructor  / Move-Konstruktor
+
+G) ==> Wenn ihr Template-Funktionen schreibt:
+
+   Dann sollte man die Parameter bzgl. Concepts absichern.
+
+
+H)  Lint , Resharper:  
+
+    IMHO: Da findet man im Regelfall wenig ... was falsch ist ...
+
+    vieles, was Lint stört --- 
+
+================================================================
+

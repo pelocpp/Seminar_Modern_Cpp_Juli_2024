@@ -75,21 +75,43 @@ namespace MoveSemantics {
         std::copy(data.m_data, data.m_data + m_size, m_data);
     }
 
+    //BigData& BigData::operator= (const BigData& data) {
+
+    //    // delete old buffer
+    //    delete[] m_data;
+
+    //    // allocate a new buffer
+    //    m_size = data.m_size;
+    //    m_data = new int[m_size];  // Out of memory
+
+    //    // copy buffer
+    //    std::copy(data.m_data, data.m_data + m_size, m_data);
+
+    //    return *this;
+    //}
+
     BigData& BigData::operator= (const BigData& data) {
 
-        // prevent self-assignment
-        if (this == &data)
+        // Mit exception safety programmiert
+
+        // A) erst die neuen Informationen berechnen
+        int* tmp = new int[data.m_size];  // Out of memory
+        if (tmp == nullptr) {
             return *this;
+        }
+
+        // B) Daten umkopieren
+        std::copy(data.m_data, data.m_data + data.m_size, tmp);
+
+        // C) Zustand: Habe immer noch die alten Daten als auch die neuen Daten
+        // Zustand tauschen
 
         // delete old buffer
         delete[] m_data;
 
-        // allocate a new buffer
+        // switch data
+        m_data = tmp;
         m_size = data.m_size;
-        m_data = new int[m_size];
-
-        // copy buffer
-        std::copy(data.m_data, data.m_data + m_size, m_data);
 
         return *this;
     }
