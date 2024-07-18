@@ -12,8 +12,10 @@ namespace StringViewDemonstration {
 
     static void test_01()
     {
+        // NICHT AM HEAP
         std::string_view sv{ "The quick brown fox jumps over the lazy dog" };  // Konstante Zeichenkette
 
+        // HEAP 
         std::string s{ "The quick brown fox jumps over the lazy dog" };        //  Heap
 
         // sv[0] = '?';   // error

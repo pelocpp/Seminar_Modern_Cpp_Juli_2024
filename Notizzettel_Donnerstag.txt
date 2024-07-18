@@ -245,3 +245,29 @@ H)  Lint , Resharper:
 
 ================================================================
 
+friend: 
+
+Was bedeutet das ???
+
+Ein 'friend' hat Zugriff auf die privaten Daten einer Klasse.
+
+================================================================
+
+std::string_view
+
+Frage:
+
+Wo legt std::string die Zeichen ab ????????????????????
+
+Am Heap.
+
+const char* menue1 = "Bearbeiten";   // WO: globales Datensegment
+const char* menue2 = "Ansicht";      // auch sogar im Code-Segment
+
+std::string menue1 = "Bearbeiten";   // HEAP
+std::string menue2 = "Ansicht";
+
+std::string_view menue1 = "Bearbeiten";   // WO: globales Datensegment
+std::string_view menue2 = "Ansicht";      // auch sogar im Code-Segment
+
+HÜLLE: Um Adresse (const char*) UND Länge

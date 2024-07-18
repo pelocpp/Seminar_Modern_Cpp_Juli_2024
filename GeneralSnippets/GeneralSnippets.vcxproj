@@ -333,6 +333,7 @@
     <ClCompile Include="Test_Frage.cpp" />
     <ClCompile Include="Test_Generate.cpp" />
     <ClCompile Include="Test_Lambda.cpp" />
+    <ClCompile Include="Test_MoreQuestsions.cpp" />
     <ClCompile Include="Test_Namespace.cpp" />
     <ClCompile Include="ToUnderlying\Module_ToUnderlying.ixx" />
     <ClCompile Include="ToUnderlying\ToUnderlying.cpp" />
